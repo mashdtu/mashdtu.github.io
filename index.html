@@ -5,152 +5,222 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title></title>
 <style>body{margin:0}
-:root { --text: #4b5563; --text-h: #111827; --bg: #fff; --toolbar-bg: #fff; --border: #e5e7eb; --code-bg: #f9fafb; --accent: #99c1f1; --accent-bg: #1e3a5f0f; --accent-border: #1e3a5f40; --social-bg: #f9fafb80; --shadow: #00000014 0 4px 12px -2px, #0000000a 0 2px 4px -1px; --sans: "Georgia", "Times New Roman", serif; --heading: system-ui, "Segoe UI", Roboto, sans-serif; --mono: ui-monospace, Consolas, monospace; font: 16px/165% var(--heading); letter-spacing: 0.1px; --lightningcss-light: initial; --lightningcss-dark: ; color-scheme: light dark; color: var(--text); background: var(--bg); font-synthesis: none; text-rendering: optimizelegibility; }
+:root {
+  --text: #4b5563; --text-h: #111827; --bg: #ffffff; --toolbar-bg: #ffffff; --border: #e5e7eb; --code-bg: #f9fafb; --accent: #99c1f1; --accent-bg: rgba(30, 58, 95, 0.06); --accent-border: rgba(30, 58, 95, 0.25); --social-bg: rgba(249, 250, 251, 0.5); --shadow: rgba(0, 0, 0, 0.08) 0 4px 12px -2px, rgba(0, 0, 0, 0.04) 0 2px 4px -1px; --sans: "Georgia", "Times New Roman", serif; --heading: system-ui, "Segoe UI", Roboto, sans-serif; --mono: ui-monospace, Consolas, monospace; font: 16px/165% var(--heading); letter-spacing: 0.1px; color-scheme: light dark; color: var(--text); background: var(--bg); font-synthesis: none; text-rendering: optimizelegibility;
+  @media (max-width: 1024px) {
+  font-size: 15px;
+}
+}
 @media (prefers-color-scheme: dark) {
-  :root { --lightningcss-light: ; --lightningcss-dark: initial; }
+  :root { --text: #cbd5e1; --text-h: #f9fafb; --bg: #0f1117; --toolbar-bg: #0f1117; --border: #1f2937; --code-bg: #1a1f2e; --accent: #7bafd4; --accent-bg: rgba(123, 175, 212, 0.1); --accent-border: rgba(123, 175, 212, 0.3); --social-bg: rgba(31, 41, 55, 0.5); --shadow: rgba(0, 0, 0, 0.4) 0 4px 12px -2px, rgba(0, 0, 0, 0.25) 0 2px 4px -1px; }
 }
-@media (width <= 1024px) {
-  :root { font-size: 15px; }
-}
-@media (prefers-color-scheme: dark) {
-  :root { --text: #cbd5e1; --text-h: #f9fafb; --bg: #0f1117; --toolbar-bg: #0f1117; --border: #1f2937; --code-bg: #1a1f2e; --accent: #7bafd4; --accent-bg: #7bafd41a; --accent-border: #7bafd44d; --social-bg: #1f293780; --shadow: #0006 0 4px 12px -2px, #00000040 0 2px 4px -1px; }
-}
-#root { text-align: justify; box-sizing: border-box; flex-direction: column; width: 100%; min-width: 360px; max-width: 1200px; min-height: 100svh; margin: 0px auto; display: flex; }
+#root { width: 100%; min-width: 360px; max-width: 1200px; margin: 0px auto; text-align: justify; min-height: 100svh; display: flex; flex-direction: column; box-sizing: border-box; }
 body { margin: 0px; }
-h1, h2 { font-family: var(--heading); color: var(--text-h); font-weight: 500; }
-h1 { letter-spacing: -1.68px; margin: 32px 0px; font-size: 56px; }
-@media (width <= 1024px) {
-  h1 { margin: 20px 0px; font-size: 36px; }
+h1, h2 { font-family: var(--heading); font-weight: 500; color: var(--text-h); }
+h1 {
+  font-size: 56px; letter-spacing: -1.68px; margin: 32px 0px;
+  @media (max-width: 1024px) {
+  font-size: 36px; margin: 20px 0px;
 }
-h2 { letter-spacing: -0.24px; margin: 0px 0px 8px; font-size: 24px; line-height: 118%; }
-@media (width <= 1024px) {
-  h2 { font-size: 20px; }
+}
+h2 {
+  font-size: 24px; line-height: 118%; letter-spacing: -0.24px; margin: 0px 0px 8px;
+  @media (max-width: 1024px) {
+  font-size: 20px;
+}
 }
 p { margin: 0px; }
-code, .counter { font-family: var(--mono); color: var(--text-h); border-radius: 4px; display: inline-flex; }
-code { background: var(--code-bg); padding: 4px 8px; font-size: 15px; line-height: 135%; }
+code, .counter { font-family: var(--mono); display: inline-flex; border-radius: 4px; color: var(--text-h); }
+code { font-size: 15px; line-height: 135%; padding: 4px 8px; background: var(--code-bg); }
 @page { margin: 1.5cm; }
 @media print {
   .edit-toolbar { display: none !important; }
-  body { background: rgb(255, 255, 255); }
+  body { background: white; }
   .cv { max-width: 100%; padding: 0px; }
 }
 .edit-theme-wrap { position: relative; }
-.edit-theme-panel { background: var(--bg); border: 1px solid var(--border); z-index: 200; border-radius: 6px; flex-direction: column; gap: 10px; min-width: 220px; padding: 12px 14px; display: flex; position: absolute; top: calc(100% + 8px); right: 0px; box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px; }
-.edit-theme-row { font-size: 12px; font-family: var(--heading); color: var(--text-h); cursor: default; justify-content: space-between; align-items: center; gap: 12px; display: flex; }
-.edit-theme-row span:first-child { flex: 1 1 0%; }
-.edit-theme-row input[type="color"] { border: 1px solid var(--border); cursor: pointer; background: 0px 0px; border-radius: 3px; width: 32px; height: 24px; padding: 1px 2px; }
-.edit-theme-row select { font-size: 12px; font-family: var(--heading); color: var(--text-h); background: var(--code-bg); border: 1px solid var(--border); cursor: pointer; border-radius: 3px; flex: 1 1 0%; padding: 3px 6px; }
-.edit-theme-row--col { flex-direction: column; align-items: flex-start; gap: 4px; }
-.edit-theme-row--col select { width: 100%; }
-.edit-theme-color-wrap { align-items: center; gap: 5px; display: flex; }
-.edit-theme-reset { font-size: 10px; font-family: var(--heading); color: var(--text); border: 1px solid var(--border); cursor: pointer; opacity: 0.6; background: 0px 0px; border-radius: 3px; padding: 1px 5px; }
-.edit-theme-reset:hover { opacity: 1; }
-.edit-toolbar { z-index: 100; background: var(--toolbar-bg,var(--bg)); border: 1px solid var(--border); border-radius: 6px; align-items: center; gap: 6px; padding: 5px 8px; display: flex; position: fixed; top: 14px; right: 14px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px; }
-.edit-toolbar-toggle { font-size: 12px; font-family: var(--heading); color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); cursor: pointer; border-radius: 3px; align-items: center; gap: 5px; padding: 3px 9px; font-weight: 600; display: flex; }
-.edit-toolbar-toggle:hover { opacity: 0.8; }
-.edit-toolbar-btn, label.edit-toolbar-btn { font-size: 12px; font-family: var(--heading); color: var(--text-h); border: 1px solid var(--border); cursor: pointer; white-space: nowrap; box-sizing: border-box; background: 0px 0px; border-radius: 3px; align-items: center; gap: 4px; padding: 3px 8px; font-weight: 500; line-height: 1.5; display: flex; }
-:is(.edit-toolbar-btn, label.edit-toolbar-btn):hover { border-color: var(--accent-border); color: var(--accent); }
-.edit-inline { border-top: medium; border-right: medium; border-left: medium; border-image: none; border-bottom: 1.5px dashed var(--accent-border); font: inherit; color: inherit; background: 0px 0px; border-radius: 0px; outline: none; min-width: 4ch; padding: 0px 2px; }
-.edit-inline:focus { border-bottom-color: var(--accent); background: var(--accent-bg); border-radius: 2px; }
-.edit-inline::placeholder { opacity: 0.35; }
-.edit-inline--block { box-sizing: border-box; width: 100%; margin: 0px; display: block; }
+.edit-theme-panel { position: absolute; top: calc(100% + 8px); right: 0px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 220px; z-index: 200; }
+.edit-theme-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 12px; font-family: var(--heading); color: var(--text-h); cursor: default;
+  & span:first-child { flex: 1 1 0%; }
+  & input[type="color"] { width: 32px; height: 24px; border: 1px solid var(--border); border-radius: 3px; padding: 1px 2px; cursor: pointer; background: none; }
+  & select { font-size: 12px; font-family: var(--heading); color: var(--text-h); background: var(--code-bg); border: 1px solid var(--border); border-radius: 3px; padding: 3px 6px; cursor: pointer; flex: 1 1 0%; }
+}
+.edit-theme-row--col {
+  flex-direction: column; align-items: flex-start; gap: 4px;
+  & select { width: 100%; }
+}
+.edit-theme-color-wrap { display: flex; align-items: center; gap: 5px; }
+.edit-theme-reset {
+  font-size: 10px; font-family: var(--heading); color: var(--text); background: none; border: 1px solid var(--border); border-radius: 3px; padding: 1px 5px; cursor: pointer; opacity: 0.6;
+  &:hover { opacity: 1; }
+}
+.edit-toolbar { position: fixed; top: 14px; right: 14px; z-index: 100; display: flex; align-items: center; gap: 6px; background: var(--toolbar-bg, var(--bg)); border: 1px solid var(--border); border-radius: 6px; padding: 5px 8px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 10px; }
+.edit-toolbar-toggle {
+  display: flex; align-items: center; gap: 5px; padding: 3px 9px; font-size: 12px; font-family: var(--heading); font-weight: 600; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 3px; cursor: pointer;
+  &:hover { opacity: 0.8; }
+}
+.edit-toolbar-btn, label.edit-toolbar-btn {
+  display: flex; align-items: center; gap: 4px; padding: 3px 8px; font-size: 12px; font-family: var(--heading); font-weight: 500; color: var(--text-h); background: none; border: 1px solid var(--border); border-radius: 3px; cursor: pointer; white-space: nowrap; box-sizing: border-box; line-height: 1.5;
+  &:hover { border-color: var(--accent-border); color: var(--accent); }
+}
+.edit-inline {
+  background: transparent; border-top: medium; border-right: medium; border-left: medium; border-image: none; border-bottom: 1.5px dashed var(--accent-border); border-radius: 0px; outline: none; font: inherit; color: inherit; padding: 0px 2px; min-width: 4ch;
+  &:focus { border-bottom-color: var(--accent); background: var(--accent-bg); border-radius: 2px; }
+  &::placeholder { opacity: 0.35; }
+}
+.edit-inline--block { display: block; width: 100%; box-sizing: border-box; margin: 0px; }
 .edit-inline--h1 { min-width: 8ch; max-width: 100%; }
 .edit-inline--sm { min-width: 6ch; max-width: 14ch; }
-.edit-inline--strong { flex: 1 1 0%; min-width: 10ch; font-size: 15px; font-weight: 600; }
-.edit-inline--date { opacity: 0.65; text-align: right; min-width: 8ch; max-width: 18ch; font-size: 12.5px; }
-.edit-inline--org { color: var(--accent); margin-bottom: 6px; font-size: 13px; font-style: italic; }
-.edit-inline-area { box-sizing: border-box; border: 1px dashed var(--accent-border); width: 100%; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-family: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; font-size-adjust: inherit; font-kerning: inherit; font-language-override: inherit; font-feature-settings: inherit; color: var(--text); resize: vertical; background: 0px 0px; border-radius: 3px; outline: none; min-height: 60px; padding: 4px 6px; font-size: 15px; line-height: 1.75; display: block; }
-.edit-inline-area:focus { border-color: var(--accent); background: var(--accent-bg); }
-.edit-inline-area::placeholder { opacity: 0.35; }
-.edit-section-controls { flex-shrink: 0; gap: 2px; margin-left: auto; display: flex; }
-.edit-section-controls button { border: 1px solid var(--border); cursor: pointer; color: var(--accent); font-size: 10px; line-height: 1.9; font-family: var(--heading); background: 0px 0px; border-radius: 3px; padding: 0px 5px; }
-.edit-section-controls button:hover:not(:disabled) { background: var(--accent-bg); }
-.edit-section-controls button:disabled { opacity: 0.2; cursor: default; }
-.edit-add-inline { font-size: 12px; font-family: var(--heading); background: var(--accent-bg); border: 1px dashed var(--accent-border); color: var(--accent); cursor: pointer; border-radius: 3px; align-items: center; gap: 4px; margin-top: 8px; padding: 4px 10px; display: flex; }
-.edit-add-inline:hover { opacity: 0.8; }
-.edit-remove-entry { float: right; border: 1px solid var(--border); color: var(--text); cursor: pointer; opacity: 0.4; background: 0px 0px; border-radius: 3px; margin-left: 8px; padding: 2px 6px; }
-.edit-remove-entry:hover { opacity: 1; color: rgb(192, 57, 43); border-color: rgb(192, 57, 43); }
-.edit-remove-icon { cursor: pointer; color: var(--text); opacity: 0.4; background: 0px 0px; border: medium; border-radius: 2px; flex-shrink: 0; align-items: center; padding: 2px 4px; display: flex; }
-.edit-remove-icon:hover { opacity: 1; color: rgb(192, 57, 43); }
-.edit-para-row { align-items: flex-start; gap: 6px; margin-bottom: 8px; display: flex; }
-.edit-para-row textarea { flex: 1 1 0%; }
-.cv-entry--editing { border: 1px dashed var(--accent-border); border-radius: 4px; padding: 10px; position: relative; }
-.cv-entry--editing .cv-entry-header { flex-wrap: wrap; }
-.cv-skill-tag--editing { align-items: center; gap: 3px; padding: 2px 7px; display: flex; }
-.cv-skill-tag--editing .edit-inline { min-width: 5ch; max-width: 16ch; }
-.cv-lang-item--editing { min-width: unset; flex-direction: row; gap: 4px; }
-.cv-lang-item--editing .edit-inline { min-width: 5ch; max-width: 11ch; }
-.cv { flex-direction: column; gap: 0px; width: 100%; min-width: 300px; max-width: 780px; margin: 0px auto; padding: 56px 40px 64px; display: flex; }
-@media (width <= 640px) {
-  .cv { min-width: 0px; padding: 36px 20px 48px; }
+.edit-inline--strong { font-weight: 600; font-size: 15px; min-width: 10ch; flex: 1 1 0%; }
+.edit-inline--date { font-size: 12.5px; opacity: 0.65; min-width: 8ch; max-width: 18ch; text-align: right; }
+.edit-inline--org { font-size: 13px; color: var(--accent); font-style: italic; margin-bottom: 6px; }
+.edit-inline-area {
+  display: block; width: 100%; box-sizing: border-box; background: transparent; border: 1px dashed var(--accent-border); border-radius: 3px; outline: none; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-family: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; font-size-adjust: inherit; font-kerning: inherit; font-language-override: inherit; font-feature-settings: inherit; color: var(--text); font-size: 15px; line-height: 1.75; padding: 4px 6px; resize: vertical; min-height: 60px;
+  &:focus { border-color: var(--accent); background: var(--accent-bg); }
+  &::placeholder { opacity: 0.35; }
 }
-.cv-header { text-align: left; margin-bottom: 18px; padding-bottom: 28px; }
-.cv-header h1 { letter-spacing: -0.5px; color: var(--text-h); font-size: 38px; font-weight: 700; font-family: var(--heading); margin: 0px 0px 10px; }
-.cv-pronouns { color: var(--text); opacity: 0.6; letter-spacing: 0px; margin-left: 0.6rem; font-size: 16px; font-weight: 400; }
-.cv-title { color: var(--accent); letter-spacing: 0.5px; text-transform: uppercase; font-size: 15px; font-weight: 500; font-family: var(--heading); margin: 0px 0px 10px; }
-.cv-contact { color: var(--text); font-size: 13.5px; font-family: var(--heading); flex-wrap: wrap; gap: 6px 20px; margin: 0px; padding: 0px; list-style: none; display: flex; }
-.cv-contact li { align-items: center; gap: 5px; display: flex; }
-.cv-contact a { color: var(--text); text-decoration: none; transition: color 0.2s; }
-.cv-contact a:hover { color: var(--accent); }
-.cv-main { flex-direction: column; gap: 36px; display: flex; }
-.cv-section h2 { letter-spacing: 2px; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--border); font-size: 10.5px; font-weight: 700; font-family: var(--heading); align-items: center; gap: 6px; margin: 0px 0px 16px; padding-bottom: 7px; display: flex; }
-.cv-section p { color: var(--text); margin: 0px; font-size: 15px; line-height: 1.75; }
-.cv-entry { margin-bottom: 22px; }
-.cv-entry:last-child { margin-bottom: 0px; }
-.cv-entry-header { justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 2px; display: flex; }
-.cv-entry-header strong { color: var(--text-h); font-size: 15px; font-weight: 600; font-family: var(--heading); }
-.cv-date { color: var(--text); white-space: nowrap; opacity: 0.65; font-size: 12.5px; font-family: var(--heading); }
-.cv-org { color: var(--accent); font-size: 13px; font-style: italic; font-family: var(--heading); margin: 0px 0px 6px !important; }
-.cv-skills { flex-wrap: wrap; gap: 6px; margin: 0px; padding: 0px; list-style: none; display: flex; }
-.cv-skill-tag { background: var(--accent-bg); color: var(--text-h); border: 1px solid var(--accent-border); font-size: 12.5px; font-family: var(--heading); letter-spacing: 0.2px; border-radius: 3px; padding: 3px 11px; }
-.cv-lang-list { flex-wrap: wrap; gap: 10px; margin: 0px; padding: 0px; list-style: none; display: flex; }
-.cv-lang-item { border: 1px solid var(--accent-border); background: var(--accent-bg); border-radius: 3px; flex-direction: column; align-items: center; min-width: 60px; padding: 3px 10px; line-height: 1.2; display: flex; }
-.cv-lang-name { color: var(--text-h); font-size: 14px; font-weight: 600; font-family: var(--heading); }
-.cv-lang-level { color: var(--text); opacity: 0.7; font-size: 11px; font-family: var(--heading); margin-top: 2px; }
-.cv-footer { border-top: 1px solid var(--border); color: var(--text); opacity: 0.5; text-align: center; font-size: 12px; font-family: var(--heading); margin-top: 52px; padding-top: 20px; }
+.edit-section-controls {
+  margin-left: auto; display: flex; gap: 2px; flex-shrink: 0;
+  & button {
+  padding: 0px 5px; font-size: 10px; line-height: 1.9; background: none; border: 1px solid var(--border); border-radius: 3px; cursor: pointer; color: var(--accent); font-family: var(--heading);
+  &:hover:not(:disabled) { background: var(--accent-bg); }
+  &:disabled { opacity: 0.2; cursor: default; }
+}
+}
+.edit-add-inline {
+  display: flex; align-items: center; gap: 4px; margin-top: 8px; padding: 4px 10px; font-size: 12px; font-family: var(--heading); background: var(--accent-bg); border: 1px dashed var(--accent-border); border-radius: 3px; color: var(--accent); cursor: pointer;
+  &:hover { opacity: 0.8; }
+}
+.edit-remove-entry {
+  float: right; padding: 2px 6px; background: none; border: 1px solid var(--border); border-radius: 3px; color: var(--text); cursor: pointer; opacity: 0.4; margin-left: 8px;
+  &:hover { opacity: 1; color: rgb(192, 57, 43); border-color: rgb(192, 57, 43); }
+}
+.edit-remove-icon {
+  display: flex; align-items: center; padding: 2px 4px; background: none; border: medium; cursor: pointer; color: var(--text); opacity: 0.4; border-radius: 2px; flex-shrink: 0;
+  &:hover { opacity: 1; color: rgb(192, 57, 43); }
+}
+.edit-para-row {
+  display: flex; align-items: flex-start; gap: 6px; margin-bottom: 8px;
+  & textarea { flex: 1 1 0%; }
+}
+.cv-entry--editing {
+  position: relative; padding: 10px; border: 1px dashed var(--accent-border); border-radius: 4px;
+  & .cv-entry-header { flex-wrap: wrap; }
+}
+.cv-skill-tag--editing {
+  display: flex; align-items: center; gap: 3px; padding: 2px 7px;
+  & .edit-inline { min-width: 5ch; max-width: 16ch; }
+}
+.cv-lang-item--editing {
+  flex-direction: row; gap: 4px; min-width: unset;
+  & .edit-inline { min-width: 5ch; max-width: 11ch; }
+}
+.cv {
+  width: 100%; min-width: 300px; max-width: 780px; margin: 0px auto; padding: 56px 40px 64px; display: flex; flex-direction: column; gap: 0px;
+  @media (max-width: 640px) {
+  padding: 36px 20px 48px; min-width: 0px;
+}
+}
+.cv-header { padding-bottom: 28px; margin-bottom: 18px; text-align: left; }
+.cv-header h1 { margin: 0px 0px 10px; font-size: 38px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-h); font-family: var(--heading); }
+.cv-pronouns { font-size: 16px; font-weight: 400; color: var(--text); opacity: 0.6; letter-spacing: 0px; margin-left: 0.6rem; }
+.cv-title { margin: 0px 0px 10px; font-size: 15px; color: var(--accent); font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; font-family: var(--heading); }
+.cv-contact { list-style: none; padding: 0px; margin: 0px; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 13.5px; color: var(--text); font-family: var(--heading); }
+.cv-contact li { display: flex; align-items: center; gap: 5px; }
+.cv-contact a {
+  color: var(--text); text-decoration: none; transition: color 0.2s;
+  &:hover { color: var(--accent); }
+}
+.cv-main { display: flex; flex-direction: column; gap: 36px; }
+.cv-section h2 { font-size: 10.5px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin: 0px 0px 16px; padding-bottom: 7px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 6px; font-family: var(--heading); }
+.cv-section p { margin: 0px; line-height: 1.75; color: var(--text); font-size: 15px; }
+.cv-entry {
+  margin-bottom: 22px;
+  &:last-child { margin-bottom: 0px; }
+}
+.cv-entry-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 2px; }
+.cv-entry-header strong { font-size: 15px; font-weight: 600; color: var(--text-h); font-family: var(--heading); }
+.cv-date { font-size: 12.5px; color: var(--text); white-space: nowrap; opacity: 0.65; font-family: var(--heading); }
+.cv-org { font-size: 13px; color: var(--accent); margin: 0px 0px 6px !important; font-style: italic; font-family: var(--heading); }
+.cv-courses { margin-top: 4px; }
+.cv-courses-label { display: block; font-size: 11px; font-family: var(--heading); color: var(--text); opacity: 0.6; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.cv-courses-table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 4px; }
+.cv-courses-table th, .cv-courses-table td { text-align: left; padding: 3px 8px 3px 0px; border-bottom: 1px solid var(--accent-border); }
+.cv-courses-table th { font-family: var(--heading); font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; opacity: 0.6; font-weight: 600; }
+.cv-courses-summary td { font-weight: 600; border-top: 2px solid var(--accent-border); border-bottom: medium; font-family: var(--heading); }
+.cv-courses-summary-toggle { display: flex; align-items: center; gap: 6px; font-size: 12px; margin-top: 6px; opacity: 0.7; cursor: pointer; }
+.cv-courses-edit-header, .cv-courses-edit-row { display: grid; grid-template-columns: 60px 1fr 60px 60px 24px; gap: 4px; align-items: center; margin-bottom: 4px; }
+.cv-courses-edit-header { font-size: 11px; font-family: var(--heading); opacity: 0.6; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; }
+.cv-courses-num, .cv-courses-ects, .cv-courses-grade { width: 100%; }
+.cv-courses-name { width: 100%; }
+.cv-skills { list-style: none; padding: 0px; margin: 0px; display: flex; flex-wrap: wrap; gap: 6px; }
+.cv-skill-tag { font-size: 12.5px; padding: 3px 11px; border-radius: 3px; background: var(--accent-bg); color: var(--text-h); border: 1px solid var(--accent-border); font-family: var(--heading); letter-spacing: 0.2px; }
+.cv-lang-list { list-style: none; padding: 0px; margin: 0px; display: flex; flex-wrap: wrap; gap: 10px; }
+.cv-lang-item { display: flex; flex-direction: column; align-items: center; padding: 3px 10px; border: 1px solid var(--accent-border); background: var(--accent-bg); border-radius: 3px; min-width: 60px; line-height: 1.2; }
+.cv-lang-name { font-size: 14px; font-weight: 600; color: var(--text-h); font-family: var(--heading); }
+.cv-lang-level { font-size: 11px; color: var(--text); opacity: 0.7; margin-top: 2px; font-family: var(--heading); }
+.cv-footer { margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text); opacity: 0.5; text-align: center; font-family: var(--heading); }
 .cv-footer p { margin: 0px; }
-.hero { position: relative; }
-.hero .base, .hero .framework, .hero .vite { margin: 0px auto; inset-inline: 0px; }
-.hero .base { z-index: 0; width: 170px; position: relative; }
-.hero .framework, .hero .vite { position: absolute; }
-.hero .framework { z-index: 1; height: 28px; top: 34px; transform: perspective(2000px) rotate(300deg) rotateX(44deg) rotateY(39deg) scale(1.4); }
-.hero .vite { z-index: 0; width: auto; height: 26px; top: 107px; transform: perspective(2000px) rotate(300deg) rotateX(40deg) rotateY(39deg) scale(0.8); }
-#center { flex-direction: column; flex-grow: 1; place-content: center; place-items: center; gap: 25px; display: flex; }
-@media (width <= 1024px) {
-  #center { gap: 18px; padding: 32px 20px 24px; }
+.hero {
+  position: relative;
+  & .base, & .framework, & .vite { inset-inline: 0px; margin: 0px auto; }
+  & .base { width: 170px; position: relative; z-index: 0; }
+  & .framework, & .vite { position: absolute; }
+  & .framework { z-index: 1; top: 34px; height: 28px; transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4); }
+  & .vite { z-index: 0; top: 107px; height: 26px; width: auto; transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8); }
 }
-#next-steps { border-top: 1px solid var(--border); text-align: left; display: flex; }
-#next-steps > div { flex: 1 1 0px; padding: 32px; }
-@media (width <= 1024px) {
-  #next-steps > div { padding: 24px 20px; }
+#center {
+  display: flex; flex-direction: column; gap: 25px; place-content: center; place-items: center; flex-grow: 1;
+  @media (max-width: 1024px) {
+  padding: 32px 20px 24px; gap: 18px;
 }
-#next-steps .icon { width: 22px; height: 22px; margin-bottom: 16px; }
-@media (width <= 1024px) {
-  #next-steps { text-align: center; flex-direction: column; }
 }
-#docs { border-right: 1px solid var(--border); }
-@media (width <= 1024px) {
-  #docs { border-right: medium; border-bottom: 1px solid var(--border); }
+#next-steps {
+  display: flex; border-top: 1px solid var(--border); text-align: left;
+  & > div {
+  flex: 1 1 0px; padding: 32px;
+  @media (max-width: 1024px) {
+  padding: 24px 20px;
 }
-#next-steps ul { gap: 8px; margin: 32px 0px 0px; padding: 0px; list-style: none; display: flex; }
-#next-steps ul .logo { height: 18px; }
-#next-steps ul a { color: var(--text-h); background: var(--social-bg); border-radius: 6px; align-items: center; gap: 8px; padding: 6px 12px; font-size: 16px; text-decoration: none; transition: box-shadow 0.3s; display: flex; }
-#next-steps ul a:hover { box-shadow: var(--shadow); }
-#next-steps ul a .button-icon { width: 18px; height: 18px; }
-@media (width <= 1024px) {
-  #next-steps ul { flex-wrap: wrap; justify-content: center; margin-top: 20px; }
-  #next-steps ul li { flex: 1 1 calc(50% - 8px); }
-  #next-steps ul a { box-sizing: border-box; justify-content: center; width: 100%; }
 }
-#spacer { border-top: 1px solid var(--border); height: 88px; }
-@media (width <= 1024px) {
-  #spacer { height: 48px; }
+  & .icon { margin-bottom: 16px; width: 22px; height: 22px; }
+  @media (max-width: 1024px) {
+  flex-direction: column; text-align: center;
 }
-.ticks { width: 100%; position: relative; }
-.ticks::before, .ticks::after { content: ""; border: 5px solid rgba(0, 0, 0, 0); position: absolute; top: -4.5px; }
-.ticks::before { border-left-color: var(--border); left: 0px; }
-.ticks::after { border-right-color: var(--border); right: 0px; }</style>
+}
+#docs {
+  border-right: 1px solid var(--border);
+  @media (max-width: 1024px) {
+  border-right: medium; border-bottom: 1px solid var(--border);
+}
+}
+#next-steps ul {
+  list-style: none; padding: 0px; display: flex; gap: 8px; margin: 32px 0px 0px;
+  & .logo { height: 18px; }
+  & a {
+  color: var(--text-h); font-size: 16px; border-radius: 6px; background: var(--social-bg); display: flex; padding: 6px 12px; align-items: center; gap: 8px; text-decoration: none; transition: box-shadow 0.3s;
+  &:hover { box-shadow: var(--shadow); }
+  & .button-icon { height: 18px; width: 18px; }
+}
+  @media (max-width: 1024px) {
+  margin-top: 20px; flex-wrap: wrap; justify-content: center;
+  & li { flex: 1 1 calc(50% - 8px); }
+  & a { width: 100%; justify-content: center; box-sizing: border-box; }
+}
+}
+#spacer {
+  height: 88px; border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+  height: 48px;
+}
+}
+.ticks {
+  position: relative; width: 100%;
+  &::before, &::after { content: ""; position: absolute; top: -4.5px; border: 5px solid transparent; }
+  &::before { left: 0px; border-left-color: var(--border); }
+  &::after { right: 0px; border-right-color: var(--border); }
+}</style>
 </head>
-<body><div id="root"><div class="cv" style="--heading: system-ui, 'Segoe UI', Roboto, sans-serif; --accent: #62a0ea; --accent-bg: #62a0ea18; --accent-border: #62a0ea55;"><header class="cv-header"><h1>mashdtu</h1><p class="cv-title">Software Technology student</p><ul class="cv-contact"><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg><a href="mailto:mashdtu@pm.me">mashdtu@pm.me</a></li><li><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512" height="14" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><a href="https://github.com/mashdtu" target="_blank" rel="noreferrer">github.com/mashdtu</a></li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>Copenhagen, Denmark</li></ul></header><main class="cv-main"><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> About Me </h2><p>I'm a 20-year-old currently studying for my Bachelor's degree in Computer Science. Once I've finished my Bachelor's degree, I plan to pursue a Master's majoring in Cybersecurity.</p><p>I have experience in both frontend and backend development, though I prefer low-level work such as chip design and operating systems over web-based development.</p></section><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"></path></svg> Skills </h2><ul class="cv-skills"><li class="cv-skill-tag">Computer Science Modelling</li><li class="cv-skill-tag">Computer Architecture</li><li class="cv-skill-tag">Embedded Systems</li><li class="cv-skill-tag">Low-level Programming</li><li class="cv-skill-tag">Automata Theory</li><li class="cv-skill-tag">Functional Programming</li><li class="cv-skill-tag">Algorithm Design</li><li class="cv-skill-tag">Object-Oriented Programming</li></ul></section><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg> Experience </h2><div class="cv-entry"><div class="cv-entry-header"><strong>Internship</strong><span class="cv-date">2021 - 2021</span></div><p class="cv-org">Sennheiser electronic GmbH &amp; Co. KG</p><p>Assisted with server management and development of an internal employee portal using Rust.</p></div></section><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg> Education </h2><div class="cv-entry"><div class="cv-entry-header"><strong>BSc Eng. in Software Technology</strong><span class="cv-date">2024 - 2028 (Expected)</span></div><p class="cv-org">Technical University of Denmark</p></div><div class="cv-entry"><div class="cv-entry-header"><strong>MSc Eng. in Cybersecurity (Planned)</strong><span class="cv-date">2028 - 2030 (Expected)</span></div><p class="cv-org">Technical University of Denmark</p></div></section><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages" aria-hidden="true"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg> Languages </h2><ul class="cv-lang-list"><li class="cv-lang-item"><span class="cv-lang-name">Danish</span><span class="cv-lang-level">Native</span></li><li class="cv-lang-item"><span class="cv-lang-name">English</span><span class="cv-lang-level">Fluent</span></li><li class="cv-lang-item"><span class="cv-lang-name">Swedish</span><span class="cv-lang-level">Conversational</span></li><li class="cv-lang-item"><span class="cv-lang-name">Italian</span><span class="cv-lang-level">Conversational</span></li></ul></section></main><footer class="cv-footer"><p>© 2026 mashdtu</p></footer></div></div></body>
+<body><div id="root"><div class="cv" style="--heading: system-ui, 'Segoe UI', Roboto, sans-serif; --accent: #62a0ea; --accent-bg: #62a0ea18; --accent-border: #62a0ea55;"><header class="cv-header"><h1>mash</h1><p class="cv-title">Software Technology student</p><ul class="cv-contact"><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg><a href="mailto:mashdtu@pm.me">mashdtu@pm.me</a></li><li><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 496 512" height="14" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg><a href="https://github.com/mashdtu" target="_blank" rel="noreferrer">github.com/mashdtu</a></li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>Copenhagen, Denmark</li></ul></header><main class="cv-main"><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> About Me </h2><p>I'm a 20-year-old currently studying for my Bachelor's degree in Computer Science. Once I've finished my Bachelor's degree, I plan to pursue a Master's majoring in Cybersecurity.</p><p>I have experience in both frontend and backend development, though I prefer low-level work such as chip design and operating systems over web-based development.</p></section><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"></path></svg> Skills </h2><ul class="cv-skills"><li class="cv-skill-tag">Computer Science Modelling</li><li class="cv-skill-tag">Computer Architecture</li><li class="cv-skill-tag">Embedded Systems</li><li class="cv-skill-tag">Low-level Programming</li><li class="cv-skill-tag">Automata Theory</li><li class="cv-skill-tag">Functional Programming</li><li class="cv-skill-tag">Algorithm Design</li><li class="cv-skill-tag">Object-Oriented Programming</li></ul></section><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg> Experience </h2><div class="cv-entry"><div class="cv-entry-header"><strong>Internship</strong><span class="cv-date">2021 - 2021</span></div><p class="cv-org">Sennheiser electronic GmbH &amp; Co. KG</p><p>Assisted with server management and development of an internal employee portal using Rust.</p></div></section><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg> Education </h2><div class="cv-entry"><div class="cv-entry-header"><strong>BSc Eng. in Software Technology</strong><span class="cv-date">2024 - 2028 (Expected)</span></div><p class="cv-org">Technical University of Denmark</p><div class="cv-courses"><table class="cv-courses-table"><thead><tr><th>#</th><th>Course</th><th>ECTS</th><th>Grade</th></tr></thead><tbody><tr><td>01001</td><td>Mathematics 1a (Polytechnical Foundation)</td><td>10</td><td>7</td></tr><tr><td>01017</td><td>Discrete Mathematics</td><td>5</td><td>7</td></tr><tr><td>02100</td><td>Introductory Programming and Software Technology</td><td>10</td><td>10</td></tr><tr><td>02104</td><td>Introductory Programming Project in Software Technology</td><td>5</td><td>02</td></tr><tr><td>26022</td><td>Chemistry (Polytechnical Foundation)</td><td>5</td><td>02</td></tr><tr><td>01002</td><td>Mathematics 1b (Polytechnical Foundation)</td><td>10</td><td>-</td></tr><tr><td>02105</td><td>Algorithms and Data Structures 1</td><td>5</td><td>-</td></tr><tr><td>02141</td><td>Computer Science Modelling</td><td>10</td><td>-</td></tr><tr><td>02161</td><td>Software Engineering 1</td><td>5</td><td>-</td></tr><tr><td>02403</td><td>Introduction to Mathematical Statistics</td><td>5</td><td>-</td></tr><tr><td>02156</td><td>Logical Systemss and Logic Programming</td><td>5</td><td>-</td></tr><tr><td>02162</td><td>Software Engineering 2</td><td>10</td><td>-</td></tr><tr><td>10060</td><td>Physics (Polytechnical Foundation)</td><td>10</td><td>-</td></tr><tr><td>02157</td><td>Functional Programming</td><td>5</td><td>-</td></tr><tr><td>02266</td><td>User Experience Engineering</td><td>5</td><td>-</td></tr><tr><td>02122</td><td>Software Technology Project</td><td>10</td><td>-</td></tr><tr><td>02170</td><td>Database Systems</td><td>5</td><td>-</td></tr><tr><td>02180</td><td>Introduction to Artificial Intelligence</td><td>5</td><td>-</td></tr><tr><td>27020</td><td>Bioengineering (Polytechnical Foundation)</td><td>5</td><td>-</td></tr><tr><td>02110</td><td>Algorithms and Data Structures 2</td><td>5</td><td>-</td></tr><tr><td>02155</td><td>Computer Architecture and Engineering</td><td>5</td><td>-</td></tr><tr><td>02132</td><td>Computer Systems</td><td>10</td><td>-</td></tr><tr><td>42620</td><td>Science, Technology and Society (Polytechnical Foundation)</td><td>5</td><td>-</td></tr><tr><td></td><td>Bachelor Project</td><td>20</td><td>-</td></tr><tr><td>10402</td><td>Fusion Energy - Engineering and Physics</td><td>5</td><td>-</td></tr></tbody><tfoot><tr class="cv-courses-summary"><td colspan="2">Total</td><td>180</td><td>6.43</td></tr></tfoot></table></div></div><div class="cv-entry"><div class="cv-entry-header"><strong>MSc Eng. in Cybersecurity (Planned)</strong><span class="cv-date">2028 - 2030 (Expected)</span></div><p class="cv-org">Technical University of Denmark</p></div></section><section class="cv-section"><h2><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages" aria-hidden="true"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg> Languages </h2><ul class="cv-lang-list"><li class="cv-lang-item"><span class="cv-lang-name">Danish</span><span class="cv-lang-level">Native</span></li><li class="cv-lang-item"><span class="cv-lang-name">English</span><span class="cv-lang-level">Fluent</span></li><li class="cv-lang-item"><span class="cv-lang-name">Italian</span><span class="cv-lang-level">Conversational</span></li></ul></section></main><footer class="cv-footer"><p>© 2026 mashdtu</p></footer></div></div></body>
 </html>
